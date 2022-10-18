@@ -1,0 +1,18 @@
+﻿@model Catalog
+
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+@foreach (var product in Model.GetProducts())
+{
+    <div>
+        <img alt="" src="@product.ImageSource">
+        <ul>
+            <p>@product.Name</p>
+            <p>Цена: @product.Price</p>
+            <p>Осталось: @product.Stock</p>
+        </ul>
+    </div>
+}
+

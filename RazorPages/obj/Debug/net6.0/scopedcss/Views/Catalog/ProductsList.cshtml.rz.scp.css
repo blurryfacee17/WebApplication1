@@ -1,0 +1,18 @@
+div[b-gr802l94qv] {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    width: 250px;
+    height: 110px;
+    border-style: groove;
+    border-color: #4f5050;
+}
+
+img[b-gr802l94qv] {
+    height: 100px;
+    width: 100px;
+}
+
+ul[b-gr802l94qv] {
+    list-style: none;
+}
