@@ -1,10 +1,34 @@
+/* _content/RazorPages/Views/Catalog/ProductInformation.cshtml.rz.scp.css */
+div[b-fcaitrirms] {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    width: 400px;
+    height: 150px;
+    border-style: groove;
+    border-color: #4f5050;
+}
+
+img[b-fcaitrirms] {
+    height: 100px;
+    width: 100px;
+}
+
+ul[b-fcaitrirms] {
+    list-style: none;
+}
+
+.nav-link.active[b-fcaitrirms] {
+    color: black;
+    text-decoration: none;
+}
 /* _content/RazorPages/Views/Catalog/ProductsList.cshtml.rz.scp.css */
 div[b-gr802l94qv] {
     display: flex;
     flex-direction: row;
     margin: 10px;
-    width: 250px;
-    height: 110px;
+    width: 400px;
+    height: 150px;
     border-style: groove;
     border-color: #4f5050;
 }
@@ -16,6 +40,11 @@ img[b-gr802l94qv] {
 
 ul[b-gr802l94qv] {
     list-style: none;
+}
+
+.nav-link.active[b-gr802l94qv] {
+    color: black;
+    text-decoration: none;
 }
 /* _content/RazorPages/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification

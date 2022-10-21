@@ -1,4 +1,4 @@
-﻿@model Catalog
+﻿@model RazorPages.Entities.Catalog
 
 @{
     ViewData["Title"] = "Список товаров";
@@ -6,13 +6,16 @@
 
 @foreach (var product in Model.GetProducts())
 {
-    <div>
-        <img alt="" src="@product.ImageSource">
-        <ul>
-            <p>@product.Name</p>
-            <p>Цена: @product.Price</p>
-            <p>Осталось: @product.Stock</p>
-        </ul>
-    </div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="ProductInformation" asp-route-id="@product.Id">
+        <div>
+            <img alt="" src="@product.ImageSource">
+            <ul>
+                <li>Категория: @product.Category</li>
+                <li>@product.Name</li>
+                <li>Цена: @product.Price</li>
+                <li>Осталось: @product.Stock</li>
+            </ul>
+        </div>
+    </a>
 }
 

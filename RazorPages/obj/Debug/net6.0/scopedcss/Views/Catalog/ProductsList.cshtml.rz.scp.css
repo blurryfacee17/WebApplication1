@@ -2,8 +2,8 @@ div[b-gr802l94qv] {
     display: flex;
     flex-direction: row;
     margin: 10px;
-    width: 250px;
-    height: 110px;
+    width: 400px;
+    height: 150px;
     border-style: groove;
     border-color: #4f5050;
 }
@@ -15,4 +15,9 @@ img[b-gr802l94qv] {
 
 ul[b-gr802l94qv] {
     list-style: none;
+}
+
+.nav-link.active[b-gr802l94qv] {
+    color: black;
+    text-decoration: none;
 }
