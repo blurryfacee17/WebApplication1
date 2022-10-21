@@ -1,0 +1,19 @@
+﻿@model RazorPages.Entities.Product
+
+@{
+    ViewData["Title"] = "Информация о товаре";
+}
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="ProductInformation">
+    <div>
+        <img alt="" src="@Model.ImageSource">
+        <ul>
+            <li>Категория: @Model.Category</li>
+            <li>@Model.Name</li>
+            <li>Цена: @Model.Price</li>
+            <li>Осталось: @Model.Stock</li>
+            <li>Описание: @Model.Description</li>
+        </ul>
+    </div>
+</a>
+
