@@ -25,3 +25,4 @@ C:\Users\Данил\RiderProjects\WebApplication1\RazorPages\obj\Debug\net6.0\re
 C:\Users\Данил\RiderProjects\WebApplication1\RazorPages\obj\Debug\net6.0\RazorPages.pdb
 C:\Users\Данил\RiderProjects\WebApplication1\RazorPages\obj\Debug\net6.0\RazorPages.genruntimeconfig.cache
 C:\Users\Данил\RiderProjects\WebApplication1\RazorPages\obj\Debug\net6.0\scopedcss\Views\Catalog\ProductsList.cshtml.rz.scp.css
+C:\Users\Данил\RiderProjects\WebApplication1\RazorPages\obj\Debug\net6.0\scopedcss\Views\Catalog\ProductInformation.cshtml.rz.scp.css

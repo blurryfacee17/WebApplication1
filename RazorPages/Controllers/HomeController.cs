@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using RazorPages.Models;
+using RazorPages.ViewModels;
 
 namespace RazorPages.Controllers;
 

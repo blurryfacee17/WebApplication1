@@ -1,4 +1,4 @@
-﻿namespace RazorPages.Entities;
+﻿namespace RazorPages.Domain.Entities;
 
 public class Category
 {

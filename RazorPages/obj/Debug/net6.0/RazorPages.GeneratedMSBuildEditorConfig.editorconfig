@@ -15,6 +15,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Данил\RiderProjects\WebApplication1\RazorPages
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/Catalog/CategoryAddition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ1xDYXRlZ29yeUFkZGl0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/Catalog/ProductAddition.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ1xQcm9kdWN0QWRkaXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/Catalog/ProductInformation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ1xQcm9kdWN0SW5mb3JtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-fcaitrirms
 
 [C:/Users/Данил/RiderProjects/WebApplication1/RazorPages/Views/Catalog/ProductsList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ1xQcm9kdWN0c0xpc3QuY3NodG1s
