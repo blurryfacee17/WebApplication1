@@ -1,0 +1,19 @@
+﻿@model RazorPages.Entities.CategoryList
+
+@{
+    ViewData["Title"] = "Добавление товара";
+}
+
+<form method="post">
+    Name: <input type="text" name="name" required/>
+    Price: <input type="number" name="price" required/>
+    Stock: <input type="number" name="stock" required/>
+    Image: <input type="text" name="imageSource" required/>
+    Description <input type="text" name="description" required/>
+    Category: <select name="category">@{
+                          foreach (var category in Model.GetCategories())
+                          {
+                              <option>@category.Name</option>
+                          }}</select>
+    <Input type="submit" value="Добавить"/>
+</form>
