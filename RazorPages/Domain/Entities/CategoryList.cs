@@ -1,6 +1,6 @@
 ﻿namespace RazorPages.Domain.Entities;
 
-public class CategoryList
+public class CategoryList : ICategoryList
 {
     private List<Category> _categories = new()
     {

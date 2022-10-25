@@ -1,7 +1,12 @@
+using RazorPages.Domain.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
+builder.Services.AddSingleton<ICategoryList, CategoryList>();
+builder.Services.AddSingleton<ICurrentUtc, CurrentUtc>();
 
 var app = builder.Build();
 

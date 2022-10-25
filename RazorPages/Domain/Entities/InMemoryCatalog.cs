@@ -2,7 +2,7 @@
 
 namespace RazorPages.Domain.Entities;
 
-public class Catalog
+public class InMemoryCatalog : ICatalog
 {
     private readonly ConcurrentBag<Product> _products = new()
     {
@@ -15,8 +15,20 @@ public class Catalog
             "Сладости","Молочный шоколад, 80гр")
     };
 
-    public ConcurrentBag<Product> GetProducts()
+    private bool _isDiscount = false;
+
+    public IReadOnlyCollection<Product> GetProducts()
     {
+        if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday && !_isDiscount)
+        {
+            foreach (var product in _products)
+            {
+                product.Price *= 0.7m;
+            }
+
+            _isDiscount = true;
+        }
+        
         return _products;
     }
 

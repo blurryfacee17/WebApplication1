@@ -6,8 +6,16 @@ namespace RazorPages.Controllers;
 
 public class CatalogController : Controller
 {
-    private static Catalog _catalog = new();
-    private static CategoryList _categoryList = new();
+    private readonly ICatalog _catalog;
+    private readonly ICategoryList _categoryList;
+    private readonly ICurrentUtc _currentUtc;
+    
+    public CatalogController(ICatalog catalog,ICategoryList categoryList,ICurrentUtc currentUtc)
+    {
+        _catalog = catalog;
+        _categoryList = categoryList;
+        _currentUtc = currentUtc;
+    }
     public IActionResult ProductsList()
     {
         return View(_catalog);
