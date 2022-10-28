@@ -22,7 +22,6 @@ public class MailKitEmailSender : IEmailSender, IDisposable
         
         EnsureConnectedAndAuthenticated();
         _smtpClient.Send(email);
-        _smtpClient.Disconnect(true);
     }
 
     private void EnsureConnectedAndAuthenticated()

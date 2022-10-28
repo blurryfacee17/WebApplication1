@@ -12,7 +12,7 @@ public class ServiceStartupNotificationBackgroundService: BackgroundService
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _emailSender.Send("danildudyrev@mail.ru","Сервер запущен","Сервер успешно запущен");
+        _emailSender.Send("danildudyrev@mail.ru", "Сервер запущен", "Сервер успешно запущен");
     }
     
 }
