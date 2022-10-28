@@ -4,6 +4,13 @@ namespace RazorPages.Domain.Entities;
 
 public class InMemoryCatalog : ICatalog
 {
+    private readonly IClock _clock;
+
+    public InMemoryCatalog(IClock clock)
+    {
+        _clock = clock;
+    }
+    
     private readonly ConcurrentBag<Product> _products = new()
     {
         new(1, "Milk", 50m, 5, "https://www.hysterectomy.org/wp-content/uploads/shutterstock_568076731.jpg",
@@ -19,7 +26,7 @@ public class InMemoryCatalog : ICatalog
 
     public IReadOnlyCollection<Product> GetProducts()
     {
-        if (DateTime.Now.DayOfWeek == DayOfWeek.Sunday && !_isDiscount)
+        if (_clock.GetCurrent().DayOfWeek == DayOfWeek.Sunday && !_isDiscount)
         {
             foreach (var product in _products)
             {

@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<ICatalog, InMemoryCatalog>();
 builder.Services.AddSingleton<ICategoryList, CategoryList>();
-builder.Services.AddSingleton<ICurrentUtc, CurrentUtc>();
+builder.Services.AddSingleton<IClock, ClockUtc>();
 
 var app = builder.Build();
 

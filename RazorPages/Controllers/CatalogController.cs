@@ -8,13 +8,13 @@ public class CatalogController : Controller
 {
     private readonly ICatalog _catalog;
     private readonly ICategoryList _categoryList;
-    private readonly ICurrentUtc _currentUtc;
+    private readonly IClock _clock;
     
-    public CatalogController(ICatalog catalog,ICategoryList categoryList,ICurrentUtc currentUtc)
+    public CatalogController(ICatalog catalog,ICategoryList categoryList,IClock clock)
     {
         _catalog = catalog;
         _categoryList = categoryList;
-        _currentUtc = currentUtc;
+        _clock = clock;
     }
     public IActionResult ProductsList()
     {

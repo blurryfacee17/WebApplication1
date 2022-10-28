@@ -1,8 +1,8 @@
 ﻿namespace RazorPages.Domain.Entities;
 
-public class CurrentUtc : ICurrentUtc
+public class ClockUtc : IClock
 {
-    public DateTime GetTime()
+    public DateTime GetCurrent()
     {
         return DateTime.UtcNow;
     }
