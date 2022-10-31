@@ -1,30 +1,44 @@
 ﻿namespace SmtpPractice;
 
-public class ServiceStartupNotificationBackgroundService: BackgroundService
+public class ServiceStartupNotificationBackgroundService : BackgroundService
 {
     private readonly IServiceScopeFactory _serviceScopeFactory;
+    private readonly ILogger<ServiceStartupNotificationBackgroundService> _logger;
 
-    public ServiceStartupNotificationBackgroundService(IServiceScopeFactory serviceScopeFactory)
+    public ServiceStartupNotificationBackgroundService(IServiceScopeFactory serviceScopeFactory,
+        ILogger<ServiceStartupNotificationBackgroundService> logger)
     {
         _serviceScopeFactory = serviceScopeFactory;
+        _logger = logger;
     }
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using var scope1 = _serviceScopeFactory.CreateScope();
-        using var scope2 = _serviceScopeFactory.CreateScope();
-        var emailSender1 = scope1.ServiceProvider.GetRequiredService<IEmailSender>();
-        var emailSender2 = scope2.ServiceProvider.GetRequiredService<IEmailSender>();
-        Parallel.Invoke(() => 
-            emailSender1.Send(
-                "danildudyrev@mail.ru",
-                "Сервер запущен", 
-                "Сервер успешно запущен"),
-            () => emailSender2.Send(
-                "danildudyrev@mail.ru",
-                "Сервер запущен", 
-                "Сервер успешно запущен")
-            );
+        _logger.LogInformation("Server started");
+        using var scope = _serviceScopeFactory.CreateScope();
+        var emailSender = scope.ServiceProvider.GetRequiredService<IEmailSender>();
+        var email = "danildudyrev@mail.ru";
+        var isSuccess = false;
+        var attempts = 2;
+
+        while (!isSuccess)
+        {
+            try
+            {
+                emailSender.Send(
+                    email,
+                    "Сервер запущен",
+                    "Сервер успешно запущен");
+                isSuccess = true;
+            }
+
+            catch (Exception e)
+            {
+                isSuccess = false;
+                attempts--;
+                if(attempts == 0)
+                    _logger.LogError(e, "Failed to send startup mail {ToEmail}, {Service}", email, emailSender.GetType());
+            }
+        }
     }
-    
 }

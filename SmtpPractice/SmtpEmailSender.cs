@@ -9,14 +9,17 @@ public class SmtpEmailSender : IEmailSender, IDisposable
 {
     private readonly SmtpClient _smtpClient = new();
     private readonly SmtpConfig _smtpConfig;
+    private ILogger<SmtpEmailSender> _logger;
 
-    public SmtpEmailSender(IOptions<SmtpConfig> options)
+    public SmtpEmailSender(IOptionsSnapshot<SmtpConfig> options, ILogger<SmtpEmailSender> logger)
     {
+        _logger = logger;
         _smtpConfig = options.Value;
     }
-    
-    public void Send(string toEmail,string subject,string htmlBody)
+
+    public void Send(string toEmail, string subject, string htmlBody)
     {
+        _logger.LogInformation("Sending to email");
         var email = new MimeMessage();
         email.From.Add(MailboxAddress.Parse(_smtpConfig.UserName));
         email.To.Add(MailboxAddress.Parse(toEmail));
@@ -25,19 +28,25 @@ public class SmtpEmailSender : IEmailSender, IDisposable
         {
             Text = htmlBody
         };
-        
         EnsureConnectedAndAuthenticated();
-        _smtpClient.Send(email);
+        try
+        {
+            _smtpClient.Send(email);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Failed sending to email {ToEmail}", toEmail);
+        }
     }
 
     private void EnsureConnectedAndAuthenticated()
     {
-        if(!_smtpClient.IsConnected)
+        if (!_smtpClient.IsConnected)
         {
             _smtpClient.Connect(_smtpConfig.Host, _smtpConfig.Port);
-
         }
-        if(!_smtpClient.IsAuthenticated)
+
+        if (!_smtpClient.IsAuthenticated)
         {
             _smtpClient.Authenticate(_smtpConfig.UserName, _smtpConfig.Password);
         }
