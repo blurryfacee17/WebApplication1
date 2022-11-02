@@ -14,7 +14,7 @@ public class ServiceStartupNotificationBackgroundService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Server started");
+        _logger.LogInformation("Сервер запущен");
         using var scope = _serviceScopeFactory.CreateScope();
         var emailSender = scope.ServiceProvider.GetRequiredService<IEmailSender>();
         var email = "danildudyrev@mail.ru";
@@ -37,7 +37,7 @@ public class ServiceStartupNotificationBackgroundService : BackgroundService
                 isSuccess = false;
                 attempts--;
                 if(attempts == 0)
-                    _logger.LogError(e, "Failed to send startup mail {ToEmail}, {Service}", email, emailSender.GetType());
+                    _logger.LogError(e, "Ошибка отправки сообщения на почту о старте программы {ToEmail}, {Service}", email, emailSender.GetType());
             }
         }
     }

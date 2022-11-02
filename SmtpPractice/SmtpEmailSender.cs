@@ -19,7 +19,7 @@ public class SmtpEmailSender : IEmailSender, IDisposable
 
     public void Send(string toEmail, string subject, string htmlBody)
     {
-        _logger.LogInformation("Sending to email");
+        _logger.LogInformation("Отправка сообщения");
         var email = new MimeMessage();
         email.From.Add(MailboxAddress.Parse(_smtpConfig.UserName));
         email.To.Add(MailboxAddress.Parse(toEmail));
@@ -35,7 +35,7 @@ public class SmtpEmailSender : IEmailSender, IDisposable
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed sending to email {ToEmail}", toEmail);
+            _logger.LogError(e, "Ошибка отправки сообщения на почту {ToEmail}", toEmail);
         }
     }
 
