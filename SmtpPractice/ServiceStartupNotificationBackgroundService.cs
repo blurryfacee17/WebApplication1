@@ -18,23 +18,23 @@ public class ServiceStartupNotificationBackgroundService : BackgroundService
         using var scope = _serviceScopeFactory.CreateScope();
         var emailSender = scope.ServiceProvider.GetRequiredService<IEmailSender>();
         var email = "danildudyrev@mail.ru";
-        var isSuccess = false;
+        var isError = true;
         var attempts = 2;
 
-        while (!isSuccess)
+        while (isError)
         {
+            isError = false;
             try
             {
                 emailSender.Send(
                     email,
                     "Сервер запущен",
                     "Сервер успешно запущен");
-                isSuccess = true;
             }
 
             catch (Exception e)
             {
-                isSuccess = false;
+                isError = true;
                 attempts--;
                 if(attempts == 0)
                     _logger.LogError(e, "Ошибка отправки сообщения на почту о старте программы {ToEmail}, {Service}", email, emailSender.GetType());
