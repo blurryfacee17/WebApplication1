@@ -1,10 +1,19 @@
 using SmtpPractice;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.Configure<SmtpConfig>(builder.Configuration.GetSection("SmtpConfig"));
+builder.Services.Configure<PolicyConfig>(builder.Configuration.GetSection("PolicyConfig"));
 builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
-builder.Services.AddHostedService<ServiceStartupNotificationBackgroundService>();
+builder.Services.AddHostedService<StartupNotificationBackgroundService>();
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapGet("/", (IEmailSender sender) =>
 {

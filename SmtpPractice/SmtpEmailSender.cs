@@ -20,8 +20,6 @@ public class SmtpEmailSender : IEmailSender, IDisposable
     public void Send(string toEmail, string subject, string htmlBody)
     {
         _logger.LogInformation("Отправка сообщения");
-        var isError = true;
-        var attempts = 2;
         var email = new MimeMessage();
         email.From.Add(MailboxAddress.Parse(_smtpConfig.UserName));
         email.To.Add(MailboxAddress.Parse(toEmail));
@@ -31,22 +29,6 @@ public class SmtpEmailSender : IEmailSender, IDisposable
             Text = htmlBody
         };
         EnsureConnectedAndAuthenticated();
-
-        while (isError)
-        {
-            isError = false;
-            try
-            {
-                _smtpClient.Send(email);
-            }
-            catch (Exception e)
-            {
-                isError = true;
-                attempts--;
-                if(attempts==0)
-                    _logger.LogError(e, "Ошибка отправки сообщения на почту {ToEmail}", toEmail);
-            }
-        }
     }
 
     private void EnsureConnectedAndAuthenticated()
