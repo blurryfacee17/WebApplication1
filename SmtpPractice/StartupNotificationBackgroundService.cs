@@ -26,14 +26,14 @@ public class StartupNotificationBackgroundService : BackgroundService
 
         var policy = Policy
             .Handle<Exception>()
-            .WaitAndRetry(_policyConfig.RetryCount, 
+            .WaitAndRetryAsync(_policyConfig.RetryCount, 
                 retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), (exception, retryAttempt) =>
                 {
                     _logger.LogWarning(
                         exception, "Error while sending email. Retrying: {Attempt}", retryAttempt);
                 }
             );
-        PolicyResult? result = policy.ExecuteAndCapture(token => emailSender.Send(email,
+        var result = await policy.ExecuteAndCaptureAsync(token => emailSender.Send(email,
             "Server started",
             "Server successfully started"), stoppingToken);
 

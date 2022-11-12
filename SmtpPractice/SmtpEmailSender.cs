@@ -5,7 +5,7 @@ using MimeKit.Text;
 
 namespace SmtpPractice;
 
-public class SmtpEmailSender : IEmailSender, IDisposable
+public class SmtpEmailSender : IEmailSender, IDisposable,IAsyncDisposable
 {
     private readonly SmtpClient _smtpClient = new();
     private readonly SmtpConfig _smtpConfig;
@@ -17,7 +17,7 @@ public class SmtpEmailSender : IEmailSender, IDisposable
         _smtpConfig = options.Value;
     }
 
-    public void Send(string toEmail, string subject, string htmlBody)
+    public async Task Send(string toEmail, string subject, string htmlBody)
     {
         _logger.LogInformation("Отправка сообщения");
         var email = new MimeMessage();
@@ -28,25 +28,35 @@ public class SmtpEmailSender : IEmailSender, IDisposable
         {
             Text = htmlBody
         };
-        EnsureConnectedAndAuthenticated();
+        await EnsureConnectedAndAuthenticated();
+        await _smtpClient.SendAsync(email);
     }
 
-    private void EnsureConnectedAndAuthenticated()
+    private async Task EnsureConnectedAndAuthenticated()
     {
         if (!_smtpClient.IsConnected)
         {
-            _smtpClient.Connect(_smtpConfig.Host, _smtpConfig.Port);
+            await _smtpClient.ConnectAsync(_smtpConfig.Host, _smtpConfig.Port);
         }
 
         if (!_smtpClient.IsAuthenticated)
         {
-            _smtpClient.Authenticate(_smtpConfig.UserName, _smtpConfig.Password);
+            await _smtpClient.AuthenticateAsync(_smtpConfig.UserName, _smtpConfig.Password);
         }
     }
 
     public void Dispose()
     {
         _smtpClient.Disconnect(true);
+        _smtpClient.Dispose();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_smtpClient.IsConnected)
+        {
+            await _smtpClient.DisconnectAsync(true);
+        }
         _smtpClient.Dispose();
     }
 }

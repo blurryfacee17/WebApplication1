@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+      <UserSecretsId>fa7095c1-e351-44f5-b0f2-cb10d7c18b60</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="MailKit" Version="3.4.2" />

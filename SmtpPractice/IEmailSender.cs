@@ -2,5 +2,5 @@
 
 public interface IEmailSender
 {
-    void Send(string toEmail,string subject,string htmlBody);
+    Task Send(string toEmail,string subject,string htmlBody);
 }
